@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+*.log
+.vscode/
+*.json
+token.*
+credentials.*
+client_secret*.json
+
+

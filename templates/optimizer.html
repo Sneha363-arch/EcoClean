@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart File Optimizer Bot</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #fff;
+    }
+    .card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    #google_translate_element {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Translate -->
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/home3.html">EcoClean</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/resources.html">Explore Resources</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+   <a href="{{ url_for('home3') }}" class="btn btn-outline-primary mb-3">
+      <i class="fas fa-arrow-left"></i> Back to Dashboard
+    </a>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4"><i class="fas fa-robot"></i> Smart File Optimizer Bot</h2>
+    <div class="card mx-auto p-4" style="max-width: 600px;">
+      <div class="card-body text-center">
+        <p class="lead">Let our AI assistant suggest which files you can safely delete to free up space and reduce your digital carbon footprint.</p>
+        <div class="alert alert-info">
+          (Demo) Example:
+          <ul class="list-unstyled">
+            <li><b>large_video.mp4</b> - 2.3 GB</li>
+            <li><b>old_backup.zip</b> - 1.1 GB</li>
+          </ul>
+        </div>
+        <button class="btn btn-success" onclick="simulateOptimization()">Optimize My Files</button>
+        <div id="result" class="mt-4 text-dark"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function simulateOptimization() {
+      const result = `
+        <h5>Suggested Deletions</h5>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            large_video.mp4 <span class="badge bg-danger">2.3 GB</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            old_backup.zip <span class="badge bg-danger">1.1 GB</span>
+          </li>
+        </ul>
+        <div class="alert alert-success mt-3">You can save <strong>3.4 GB</strong> and reduce ~<strong>1.7 kg CO₂</strong>!</div>
+      `;
+      document.getElementById('result').innerHTML = result;
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

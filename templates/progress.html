@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoClean Sustainability Dashboard</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f4f8f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1, h2 {
+      color: #205c3b;
+      text-align: center;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+
+    /* Badges */
+    .badges {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .badges img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 2px solid #cce3d0;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .badges img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Drives & Events */
+    .drives-events-section {
+      padding: 20px;
+      background-color: #f0fdf4;
+      text-align: center;
+    }
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .event-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .event-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .event-card:hover img {
+      transform: scale(1.1);
+    }
+    .event-card .overlay {
+      position: absolute;
+      bottom: 0;
+      background: rgba(0,0,0,0.65);
+      color: #fff;
+      width: 100%;
+      padding: 10px;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+    .event-card:hover .overlay {
+      transform: translateY(0%);
+    }
+
+    /* Puzzle Game */
+    .eco-puzzle-section {
+      padding: 30px;
+      text-align: center;
+      background-color: #fff0f6;
+    }
+    .puzzle-word {
+      font-size: 24px;
+      letter-spacing: 3px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+    input[type="text"] {
+      padding: 8px;
+      width: 60%;
+      margin-bottom: 10px;
+    }
+
+    /* Daily Tip and Fun Fact */
+    .tips-box, .funfact-box {
+      background-color: #e4f7e6;
+      border-left: 6px solid #34a853;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      background-color: #58b768;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 10px 0;
+    }
+    .btn:hover {
+      background-color: #419d55;
+    }
+  </style>
+</head>
+<body>
+  <a href="{{ url_for('home3') }}" class="btn btn-outline-primary mb-3">
+      <i class="fas fa-arrow-left"></i> Back to Dashboard
+    </a>
+
+  <h1>🌿 EcoClean Sustainability Dashboard</h1>
+
+  <!-- 🏆 Eco Badge Collection -->
+  <div class="section">
+    <h2>🏆 Eco Badge Collection</h2>
+    <div class="badges">
+      <img src="https://cdn-icons-png.flaticon.com/512/2209/2209522.png" alt="First Clean-Up" title="Completed First Digital Cleanup">
+      <img src="https://cdn-icons-png.flaticon.com/512/4394/4394673.png" alt="7-Day Streak" title="7-Day Declutter Streak Achieved!">
+      <img src="https://cdn-icons-png.flaticon.com/512/4146/4146788.png" alt="Eco Artist" title="Eco Art Contest Participant">
+      <img src="https://cdn-icons-png.flaticon.com/512/4302/4302065.png" alt="Green Thumb" title="Tree Plantation Volunteer">
+      <img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" alt="Plastic Free Hero" title="Joined Plastic-Free Campus Drive">
+    </div>
+  </div>
+
+  <!-- 📢 Sustainability Drives & Upcoming Events -->
+  <section class="section drives-events-section">
+    <h2>📢 Sustainability Drives & Upcoming Events</h2>
+    <div class="event-grid">
+      <div class="event-card">
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72" alt="Tree Plantation Drive">
+        <div class="overlay">
+          <h3>🌳 Tree Plantation</h3>
+          <p>Join us in greening our city this weekend!</p>
+        </div>
+      </div>
+      <div class="event-card">
+        <img src="https://images.unsplash.com/photo-1588702547923-7093a6c3ba33" alt="E-Waste Collection Week">
+        <div class="overlay">
+          <h3>🔌 E-Waste Week</h3>
+          <p>Drop your old electronics for recycling.</p>
+        </div>
+      </div>
+      <div class="event-card">
+        <img src="https://images.unsplash.com/photo-1508186225823-0963cf9ab0de" alt="Plastic Free Campus">
+        <div class="overlay">
+          <h3>🚯 Plastic-Free Campus</h3>
+          <p>Say no to plastic bottles starting this month.</p>
+        </div>
+      </div>
+        <div class="event-card">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=60" alt="Green Innovation Challenge">
+            <div class="overlay">
+                <h3>🚀 Green Innovation Challenge</h3>
+                <p>Submit your eco-tech and sustainability solutions!</p>
+             </div>
+        </div>
+    </section>
+
+  <!-- 🎮 Eco Puzzle Game -->
+  <section class="eco-puzzle-section section">
+    <h2>♻ Eco Word Jumble Game</h2>
+    <p>Unscramble the eco word:</p>
+    <div class="puzzle-word" id="jumbledWord">LETANP</div>
+    <input type="text" id="guessInput" placeholder="Your guess...">
+    <button class="btn" onclick="checkGuess()">Submit</button>
+    <p id="resultMsg"></p>
+  </section>
+
+  <!-- 🌱 Daily Green Tip -->
+  <div class="section">
+    <h2>🌱 Daily Green Tip</h2>
+    <button class="btn" onclick="showRandomTip()">🌞 Show Tip</button>
+    <div class="tips-box" id="dailyTip">Click to reveal a tip!</div>
+  </div>
+
+  <!-- 🤯 Fun Eco Fact -->
+  <div class="section">
+    <h2>🤯 Fun Eco Fact</h2>
+    <button class="btn" onclick="showRandomFact()">💡 Show Fact</button>
+    <div class="funfact-box" id="funFact">Click to reveal a fun fact!</div>
+  </div>
+
+  <script>
+    // Word Jumble Game
+    const words = [
+      { word: "PLANET", jumbled: "LETANP" },
+      { word: "WATER", jumbled: "AETWR" },
+      { word: "RECYCLE", jumbled: "CELRCYE" },
+      { word: "ECO", jumbled: "COE" },
+      { word: "TREES", jumbled: "ESTRE" },
+    ];
+    let current = 0;
+
+    function checkGuess() {
+      const input = document.getElementById("guessInput").value.trim().toUpperCase();
+      const correct = words[current].word;
+      const result = document.getElementById("resultMsg");
+
+      if (input === correct) {
+        result.textContent = "✅ Correct! Loading next word...";
+        setTimeout(() => {
+          current = (current + 1) % words.length;
+          document.getElementById("jumbledWord").textContent = words[current].jumbled;
+          document.getElementById("guessInput").value = "";
+          result.textContent = "";
+        }, 1000);
+      } else {
+        result.textContent = "❌ Try again!";
+      }
+    }
+
+    // Tips
+    const tips = [
+      "Turn off unused tabs to save RAM and energy.",
+      "Schedule weekly digital declutter time.",
+      "Use cloud storage wisely – clean out your Google Drive!",
+      "Switch your search engine to a greener option like Ecosia.",
+      "Lower your screen brightness to save battery life.",
+    ];
+    function showRandomTip() {
+      document.getElementById('dailyTip').textContent = tips[Math.floor(Math.random() * tips.length)];
+    }
+
+    // Facts
+    const facts = [
+      "The cloud relies on data centers that consume huge energy.",
+      "Streaming 1 hour of video = 36g of CO₂!",
+      "Deleting 30 emails can save 222Wh of power.",
+      "Digital photos stored on cloud use power 24/7.",
+      "Recycling 1 aluminum can saves enough energy to power a TV for 3 hours.",
+    ];
+    function showRandomFact() {
+      document.getElementById('funFact').textContent = facts[Math.floor(Math.random() * facts.length)];
+    }
+  </script>
+
+  <div style="text-align: center; margin-top: 40px;">
+  <a href="home3.html">
+    <button class="btn">🔙 Back to Dashboard</button>
+  </a>
+</div>
+</body>
+</html>

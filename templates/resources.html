@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Educational resources for Digital Waste and SDG 12">
+  <title>EcoClean: Educational Resources</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #8e44ad, #6c5ce7);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    nav .nav-link {
+      color: white !important;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav .nav-link:hover {
+      color: #dcd6f7 !important;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto 60px;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 2.8rem;
+      margin-bottom: 40px;
+      color: #f1f1f1;
+      text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+
+    .resource-section {
+      background: #fff;
+      color: #2d3436;
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .resource-section:hover {
+      transform: translateY(-6px);
+    }
+
+    .resource-section h2 {
+      color: #6c5ce7;
+      margin-top: 0;
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .resource-item {
+      background: #f8f9fa;
+      padding: 20px 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border-left: 6px solid #6c5ce7;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .resource-item:hover {
+      background-color: #eaeef8;
+      transform: translateX(5px);
+    }
+
+    .resource-item h3 {
+      margin-top: 0;
+      color: #2d3436;
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .resource-item p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(108, 92, 231, 0.1);
+      color: #6c5ce7;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .resource-link:hover {
+      background: rgba(108, 92, 231, 0.25);
+      color: #5a4cd9;
+      transform: translateY(-2px);
+    }
+
+    .resource-link i {
+      margin-right: 8px;
+      font-size: 1.1rem;
+    }
+
+    .youtube-link {
+      background: rgba(255, 0, 0, 0.1);
+      color: #e74c3c;
+    }
+
+    .youtube-link:hover {
+      background: rgba(255, 0, 0, 0.2);
+      color: #c0392b;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: #6c5ce7;
+      color: white;
+      padding: 14px 30px;
+      text-decoration: none;
+      border-radius: 25px;
+      margin-top: 30px;
+      transition: background 0.3s ease, transform 0.3s ease;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+    }
+
+    .back-btn:hover {
+      background: #5a4cd9;
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background-color: #2d3436;
+      text-align: center;
+      padding: 15px;
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-top: auto;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+        margin: 20px auto 40px;
+      }
+
+      .resource-section h2 {
+        font-size: 1.5rem;
+      }
+
+      .resource-item {
+        padding: 15px 20px;
+      }
+
+      .back-btn {
+        width: 100%;
+        text-align: center;
+        padding: 14px 0;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <main class="container" role="main" tabindex="-1">
+    <h1>Educational Resources</h1>
+
+    <section class="resource-section" aria-labelledby="videos-heading">
+      <h2 id="videos-heading">🎥 Video Resources</h2>
+
+      <article class="resource-item">
+        <h3>Understanding Digital Waste</h3>
+        <p>A comprehensive video explaining sustainable digital practices and their impact on the environment. Learn about the environmental consequences of digital waste and how to minimize your digital carbon footprint.</p>
+        <a href="https://www.youtube.com/watch?v=dn-hLQk49eA" class="resource-link youtube-link" target="_blank" rel="noopener noreferrer" aria-label="Watch Understanding Digital Waste on YouTube">
+          <i class="fab fa-youtube"></i> Watch on YouTube
+        </a>
+      </article>
+
+      <article class="resource-item">
+        <h3>SDG 12 Explained</h3>
+        <p>An informative video breaking down Sustainable Development Goal 12 and its importance in today's digital world. Understand how responsible consumption applies to digital resources.</p>
+        <a href="https://www.youtube.com/watch?v=RB8Yc8XBkxg" class="resource-link youtube-link" target="_blank" rel="noopener noreferrer" aria-label="Watch SDG 12 Explained on YouTube">
+          <i class="fab fa-youtube"></i> Watch on YouTube
+        </a>
+      </article>
+    </section>
+
+    <section class="resource-section" aria-labelledby="research-heading">
+      <h2 id="research-heading">📄 Research &amp; Articles</h2>
+
+      <article class="resource-item">
+        <h3>Digital Sustainability Research</h3>
+        <p>Explore academic research on digitalization and sustainability transitions. This paper provides insights into how digital transformation can be aligned with sustainability goals.</p>
+        <a href="https://www.researchgate.net/publication/355167429_On_digitalization_and_sustainability_transitions" class="resource-link" target="_blank" rel="noopener noreferrer" aria-label="Read Digital Sustainability Research paper">
+          <i class="fas fa-file-alt"></i> Read Research Paper
+        </a>
+      </article>
+
+      <article class="resource-item">
+        <h3>Sustainable Digital Transitions</h3>
+        <p>Learn about the latest developments in sustainable digital transformation and how organizations are adapting to reduce their environmental impact.</p>
+        <a href="https://onlinelibrary.wiley.com/doi/10.1002/bse.2943" class="resource-link" target="_blank" rel="noopener noreferrer" aria-label="View Sustainable Digital Transitions article">
+          <i class="fas fa-file-alt"></i> View Article
+        </a>
+      </article>
+    </section>
+
+    <section class="resource-section" aria-labelledby="official-heading">
+      <h2 id="official-heading">🌍 Official Resources</h2>
+
+      <article class="resource-item">
+        <h3>UN SDG 12 Hub</h3>
+        <p>Access the official United Nations resource on Sustainable Development Goal 12. Get detailed information about targets, indicators, and progress towards responsible consumption and production.</p>
+        <a href="https://sdgs.un.org/goals/goal12" class="resource-link" target="_blank" rel="noopener noreferrer" aria-label="Visit UN SDG 12 Portal">
+          <i class="fas fa-globe"></i> Visit UN SDG Portal
+        </a>
+      </article>
+    </section>
+
+     <a href="{{ url_for('home3') }}" class="btn btn-outline-primary mb-3">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; 2025 EcoClean. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

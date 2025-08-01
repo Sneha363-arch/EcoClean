@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive Files</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .file-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .file-item:hover {
+            background-color: #f8f9fa;
+        }
+        .file-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            text-align: center;
+        }
+        .file-name {
+            flex-grow: 1;
+        }
+        .file-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .folder-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        .folder-link:hover {
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2><i class="fab fa-google-drive"></i> Google Drive Files</h2>
+        
+        {% if current_folder_id %}
+        <a href="{{ url_for('list_drive_files') }}" class="btn btn-outline-primary mb-3">
+            <i class="fas fa-arrow-up"></i> Back to Root
+        </a>
+        {% endif %}
+        
+        <div class="list-group">
+            {% for file in files %}
+            <div class="file-item">
+                <div class="file-icon">
+                    {% if file.mimeType == 'application/vnd.google-apps.folder' %}
+                    <i class="fas fa-folder text-warning"></i>
+                    {% else %}
+                    <i class="fas fa-file text-primary"></i>
+                    {% endif %}
+                </div>
+                <div class="file-name">
+                    {% if file.mimeType == 'application/vnd.google-apps.folder' %}
+                    <a href="{{ url_for('browse_folder', folder_id=file.id) }}" class="folder-link">
+                        {{ file.name }}
+                    </a>
+                    {% else %}
+                    {{ file.name }}
+                    {% endif %}
+                </div>
+                <div class="file-actions">
+                    {% if file.mimeType != 'application/vnd.google-apps.folder' %}
+                    <a href="{{ url_for('get_file', file_id=file.id) }}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-external-link-alt"></i> View
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        {% if not files %}
+        <div class="alert alert-info">
+            No files found in this folder.
+        </div>
+        {% endif %}
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

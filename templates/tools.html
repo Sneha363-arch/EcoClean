@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interactive Tools & Analysis - EcoClean</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #8e44ad, #6c5ce7);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 60px auto;
+      padding: 40px;
+      background: #ffffff;
+      border-radius: 25px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      color: #2d3436;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #6c5ce7;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #6c5ce7;
+      margin-bottom: 15px;
+    }
+
+    .section p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .tool-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #6c5ce7;
+      color: #fff;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .tool-button:hover {
+      background-color: #5a4bcf;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #6c5ce7;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .back-link i {
+      margin-right: 6px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 30px 15px;
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      .section h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="{{ url_for('home3') }}" class="back-link"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    <h1><i class="fas fa-tools"></i> Interactive Tools & Analysis</h1>
+
+    <div class="section">
+      <h2><i class="fas fa-calculator"></i> Digital Carbon Calculator</h2>
+      <p>Calculate your digital carbon footprint based on your online activities, device usage, and data storage habits.</p>
+      <a href="{{ url_for('calculator') }}" class="tool-button">Open Calculator</a>
+    </div>
+
+    <div class="section">
+      <h2><i class="fas fa-robot"></i> AI Sustainability Assistant</h2>
+      <p>Get personalized advice on reducing your digital carbon footprint and sustainable practices.</p>
+      <a href="{{ url_for('assistant') }}" class="tool-button">Ask the AI</a>
+    </div>
+
+    <div class="section">
+      <h2><i class="fas fa-chart-line"></i> Digital Footprint Tracker</h2>
+      <p>Track your digital activities and see your progress over time with detailed analytics.</p>
+      <a href="{{ url_for('tracker') }}" class="tool-button">View Tracker</a>
+    </div>
+  </div>
+</body>
+</html>

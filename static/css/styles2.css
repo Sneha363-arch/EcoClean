@@ -1,0 +1,443 @@
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding-top: 76px;
+    background: #fff5f8;
+}
+
+/* Main Grid Layout */
+.main-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-section {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.1);
+    border: 1px solid rgba(255, 105, 180, 0.2);
+}
+
+/* Navigation */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* Get Started Section */
+.card {
+    border: none;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.1);
+}
+
+.form-control, .form-select {
+    background: #fff;
+    border: 1px solid rgba(255, 105, 180, 0.3);
+    border-radius: 5px;
+    padding: 0.8rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #ff69b4;
+    box-shadow: 0 0 0 0.2rem rgba(255, 105, 180, 0.25);
+}
+
+/* Duplicate Files Section */
+.list-group-item {
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.05), rgba(220, 20, 60, 0.05));
+    border: 1px solid rgba(255, 105, 180, 0.2);
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+}
+
+/* Carbon Emission Section */
+.carbon-metric {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(220, 20, 60, 0.1));
+    border-radius: 5px;
+    border: 1px solid rgba(255, 105, 180, 0.2);
+    margin-bottom: 1rem;
+}
+
+/* Chat Bot */
+.chat-bot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.chat-bot .btn {
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.chat-window {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+}
+
+.chat-window.active {
+    display: flex;
+}
+
+.chat-header {
+    padding: 1rem;
+    background: linear-gradient(135deg, #ff69b4, #dc143c);
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+.user-message {
+    background: linear-gradient(135deg, #ff69b4, #dc143c);
+    color: #fff;
+    margin-left: auto;
+}
+
+.bot-message {
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(220, 20, 60, 0.1));
+    border: 1px solid rgba(255, 105, 180, 0.2);
+    margin-right: auto;
+}
+
+.chat-input {
+    padding: 1rem;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-input input {
+    flex: 1;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.chat-input button {
+    background: linear-gradient(135deg, #ff69b4, #dc143c);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.chat-input button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(220, 20, 60, 0.3);
+}
+
+/* Animations */
+.animate__animated {
+    animation-duration: 0.5s;
+}
+
+.animate__fadeInUp {
+    animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 20px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* SDG Section Specific */
+.sdg-info {
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(220, 20, 60, 0.1));
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 105, 180, 0.2);
+}
+
+.sdg-info h5 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.sdg-info p {
+    color: #666;
+}
+
+.btn-sdg {
+    background: linear-gradient(135deg, #ff69b4, #dc143c);
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-sdg:hover {
+    background: linear-gradient(135deg, #dc143c, #ff69b4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+    color: white;
+}
+
+#sdg-12 .card {
+    border: 1px solid #dee2e6;
+}
+
+#sdg-12 .card:hover {
+    border-color: #ff69b4;
+}
+
+/* Button Styles */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+/* Functional Buttons (Analyze, Scan, etc.) */
+.btn-success {
+    background: linear-gradient(135deg, #ff69b4, #dc143c);
+    border: none;
+    color: white;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #dc143c, #ff69b4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+    color: white;
+}
+
+/* Warning Buttons (Clean Up, Optimize) */
+.btn-warning {
+    background: linear-gradient(135deg, #ff69b4, #dc143c);
+    border: none;
+    color: white;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #dc143c, #ff69b4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+    color: white;
+}
+
+/* Danger Buttons */
+.btn-danger {
+    background: linear-gradient(135deg, #ff69b4, #dc143c);
+    border: none;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #dc143c, #ff69b4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+    color: white;
+}
+
+/* Email Section Specific */
+.email-info {
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(220, 20, 60, 0.1));
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 105, 180, 0.2);
+}
+
+.email-info h5 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.email-info p {
+    color: #666;
+    line-height: 1.6;
+}
+
+#email-cleanup .card {
+    border: 1px solid #dee2e6;
+}
+
+#email-cleanup .card:hover {
+    border-color: #28a745;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .chat-window {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+    }
+    
+    .chat-header {
+        border-radius: 0;
+    }
+}
+
+/* Hover Effects */
+.grid-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.15);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* Section Title Icons */
+.grid-section h2 i {
+    margin-right: 10px;
+    color: #ff69b4;
+    font-size: 1.8rem;
+    vertical-align: middle;
+}
+
+.grid-section h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Hover effect for icons */
+.grid-section:hover h2 i {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Toast Notification Styles */
+.toast {
+    background: #fff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.toast-header {
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(220, 20, 60, 0.1));
+    border-bottom: 1px solid rgba(255, 105, 180, 0.2);
+    padding: 0.75rem 1rem;
+}
+
+.toast-header i {
+    color: #ff69b4;
+    font-size: 1.2rem;
+}
+
+.toast-body {
+    padding: 1rem;
+    background: #fff;
+}
+
+.toast-body i {
+    color: #ff69b4;
+    font-size: 1.5rem;
+}
+
+.toast-body h6 {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.toast-body p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.btn-close {
+    color: #ff69b4;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+/* Toast Animation */
+.toast.show {
+    animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
