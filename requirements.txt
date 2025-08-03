@@ -12,3 +12,4 @@ seaborn>=0.11.0
 matplotlib>=3.4.0
 joblib>=1.0.0
 gunicorn>=20.0.0
+mysql-connector-python>=8.0.0
