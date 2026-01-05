@@ -14,4 +14,4 @@ EcoClean provides context-aware, privacy-safe, carbon-optimized cleanup.
 5. Retention scoring
 
 ## Current Status
-Prototype / Academic Project
+Ready for Deployment
