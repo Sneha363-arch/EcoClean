@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Email Inbox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: white;
+            padding: 2rem;
+            color: #111827;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        .badge-Important { background-color: #10b981; }
+        .badge-Social { background-color: #3b82f6; }
+        .badge-Promotional { background-color: #f59e0b; }
+        .badge-Newsletter { background-color: #9ca3af; }
+        .badge-Spam { background-color: #ef4444; }
+        .badge-Other { background-color: #6b7280; }
+        .email-item { background: white; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: background-color 0.3s, color 0.3s; }
+        body.dark-mode .email-item {
+            background: #374151;
+            color: #f9fafb;
+        }
+        .star-icon {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #ccc;
+            margin-left: 1rem;
+        }
+        .star-icon.starred {
+            color: #fbbf24;
+        }
+        .category-filter {
+            cursor: pointer;
+            margin-right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            background-color: #e5e7eb;
+            display: inline-block;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode .category-filter {
+            background-color: #4b5563;
+            color: #f9fafb;
+        }
+        body.light-mode {
+    background-color: #f9fafb;
+}
+
+        .category-filter.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        #co2Impact {
+            background-color: #d1fae5;
+            border: 1px solid #10b981;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            color: #065f46;
+            max-height: none !important;
+            overflow: visible !important;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode #co2Impact {
+            background-color: #065f46;
+            color: #d1fae5;
+            border-color: #10b981;
+        }
+        #notification {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: #d1fae5;
+            border: 1px solid #10b981;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            color: #065f46;
+            display: none;
+            z-index: 1000;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode #notification {
+            background-color: #065f46;
+            color: #d1fae5;
+            border-color: #10b981;
+        }
+        /* Beautify category dropdown */
+        .category-dropdown {
+            border-radius: 0.5rem;
+            border: 1.5px solid #10b981;
+            padding: 0.25rem 0.5rem;
+            background-color: #f0fdf4;
+            color: #065f46;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+            min-width: 130px;
+        }
+        body.dark-mode .category-dropdown {
+            background-color: #374151;
+            color: #d1fae5;
+            border-color: #10b981;
+            box-shadow: 0 2px 6px rgba(16, 185, 129, 0.6);
+        }
+        .category-dropdown:hover, .category-dropdown:focus {
+            border-color: #065f46;
+            box-shadow: 0 4px 12px rgba(6, 95, 70, 0.5);
+            outline: none;
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        body.dark-mode .category-dropdown:hover, body.dark-mode .category-dropdown:focus {
+            background-color: #065f46;
+            color: #d1fae5;
+        }
+        .category-dropdown option {
+            font-weight: 600;
+            color: #065f46;
+        }
+        body.dark-mode .category-dropdown option {
+            color: #d1fae5;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="{{ url_for('base') }}" class="mb-3 d-inline-block">&larr; Back to Home</a>
+    <h2 class="mb-4">📬Your Inbox </span></h2>
+
+    {# 
+    <div id="co2Impact" style="display:block;">
+        <h4>Carbon Impact</h4>
+        <p>Your environmental contribution</p>
+        <p><strong>You've saved <span id="co2Saved">0</span>g of CO<sub>2</sub></strong></p>
+        <p>by deleting <span id="deletedCount">0</span> emails!</p>
+        <p>Equivalent to trees planted: <span id="treesPlanted">0.00000</span> trees/day</p>
+        <p>Equivalent to car miles not driven: <span id="carMiles">0.00</span> miles</p>
+    </div> #}
+
+    <div class="mb-3 d-flex gap-3 align-items-center">
+        <button class="btn btn-secondary" id="disconnectBtn" onclick="disconnectGmail()">Disconnect Gmail</button>
+<button class="btn btn-primary" id="refreshBtn" onclick="location.reload()">Refresh</button>
+        <button class="btn btn-danger" id="deleteSelectedBtn" onclick="deleteSelected()" disabled>Delete Selected (0)</button>
+        <button class="btn btn-outline-secondary ms-auto" id="toggleDarkModeBtn" title="Toggle Dark/Light Mode">🌙</button>
+    </div>
+    <div class="mb-2">
+        Mail-ID: <strong>{{ mail_id }}</strong>
+    </div>
+
+    <div class="mb-3">
+        <span class="category-filter active" data-category="All">📧 All ({{ total_emails }})</span>
+        <span class="category-filter" data-category="Important">⭐ Important ({{ category_counts.get('Important', 0) }})</span>
+        <span class="category-filter" data-category="Social">👥 Social ({{ category_counts.get('Social', 0) }})</span>
+        <span class="category-filter" data-category="Promotional">🏷️ Promotional ({{ category_counts.get('Promotional', 0) }})</span>
+        <span class="category-filter" data-category="Newsletter">📰 Newsletter ({{ category_counts.get('Newsletter', 0) }})</span>
+        <span class="category-filter" data-category="Spam">🚫 Spam ({{ category_counts.get('Spam', 0) }})</span>
+        <span class="category-filter" data-category="Other">📂 Other ({{ category_counts.get('Other', 0) }})</span>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-8 mb-4">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="selectAll" /></th>
+                        <th>Sender</th>
+                        <th>Subject & Preview</th>
+                <th>Category</th>
+                <th>Actions</th>
+                 <td style="background-color: white; border-radius: 0 0.5rem 0.5rem 0;">
+
+            </tr>
+        </thead>
+        <tbody id="emailTableBody">
+            {% for email in emails %}
+            <tr class="email-item" data-category="{{ email.category }}" data-id="{{ email.id }}">
+                <td>
+                    <input type="checkbox" class="form-check-input email-checkbox" data-id="{{ email.id }}" {% if email.category == 'Spam' %}checked{% endif %} />
+                </td>
+                <td>{{ email.from }}</td>
+                <td>
+                    <strong>{{ email.subject }}</strong><br/>
+                    <small>{{ email.snippet }}</small><br/>
+                    <small class="text-muted small">{{ email.internalDate|datetimeformat }}</small><br/>
+                    <small class="co2-emission">🌿 CO₂ Emission: {{ email.co2_emission }} g/year</small><br/>
+                    <button class="btn btn-sm btn-outline-primary view-more-btn" onclick="toggleEmailContent('{{ email.id }}')">View More</button>
+                    <div id="emailContent-{{ email.id }}" class="email-content" style="display:none; white-space: pre-wrap; margin-top: 0.5rem; background-color: #d1fae5; border: 1px solid #10b981; border-radius: 0.5rem; padding: 1rem; color: #065f46; max-height: 300px; max-width: 100%; overflow-y: auto; word-wrap: break-word; word-break: break-word;"></div>
+                </td>
+                <td>
+                    <span class="badge text-white badge-{{ email.category }}">{{ email.category }}</span>
+                </td>
+                <td style="background-color: white; border-radius: 0 0.5rem 0.5rem 0;">
+                    <select class="form-select form-select-sm category-dropdown" data-email-id="{{ email.id }}" aria-label="Change category">
+                        <option value="Important" {% if email.category == 'Important' %}selected{% endif %}>Important</option>
+                        <option value="Social" {% if email.category == 'Social' %}selected{% endif %}>Social</option>
+                        <option value="Promotional" {% if email.category == 'Promotional' %}selected{% endif %}>Promotional</option>
+                        <option value="Newsletter" {% if email.category == 'Newsletter' %}selected{% endif %}>Newsletter</option>
+                        <option value="Spam" {% if email.category == 'Spam' %}selected{% endif %}>Spam</option>
+                        <option value="Other" {% if email.category == 'Other' %}selected{% endif %}>Other</option>
+                    </select>
+                </td>
+                <td>
+                    <span class="star-icon {% if email.id in session.get('important_emails', []) %}starred{% endif %}" data-id="{{ email.id }}" title="Mark as Important">&#9733;</span>
+                </td>
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
+    </div>
+    <div class="col-12 col-lg-4">
+        <canvas id="categoryChart" width="300" height="300"></canvas>
+        <div id="co2Impact" style="min-width: 250px; margin-top: 1rem; background-color: #d1fae5; color: #065f46; padding: 1rem; border-radius: 0.5rem;">
+            <h4>Carbon Impact</h4>
+            <p>Your environmental contribution</p>
+            <p><strong>You've saved <span id="co2Saved">0</span>g of CO<sub>2</sub></strong></p>
+            <p>by deleting <span id="deletedCount">0</span> emails!</p>
+            <p>Equivalent to trees planted: <span id="treesPlanted">0.00000</span> trees/day</p>
+            <p>Equivalent to car miles not driven: <span id="carMiles">0.00</span> miles</p>
+        </div>
+    </div>
+</div>
+
+    <div id="notification"></div>
+
+    <!-- Popup overlay and card -->
+    <!-- Removed popup overlay and popup div as inline content will be used instead -->
+
+    <script>
+        // Category filter logic
+        const filters = document.querySelectorAll('.category-filter');
+        filters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                filters.forEach(f => f.classList.remove('active'));
+                filter.classList.add('active');
+                const category = filter.getAttribute('data-category');
+                filterEmails(category);
+            });
+        });
+
+        // Handle category dropdown change
+        const categoryDropdowns = document.querySelectorAll('.category-dropdown');
+        categoryDropdowns.forEach(dropdown => {
+            dropdown.addEventListener('change', (event) => {
+                const emailId = event.target.getAttribute('data-email-id');
+                const newCategory = event.target.value;
+
+                fetch('/update_category', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email_id: emailId, new_category: newCategory })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Update the category badge in the same row
+                        const row = event.target.closest('tr');
+                        const badge = row.querySelector('.badge');
+                        if (badge) {
+                            badge.textContent = newCategory;
+                            badge.className = 'badge text-white badge-' + newCategory;
+                        }
+                        // Optionally show a notification
+                        showNotification(`Updated to ${newCategory} — system is learning your preferences`);
+
+                    } else {
+                        alert('Failed to update category: ' + data.error);
+                    }
+                })
+                .catch(() => {
+                    alert('Error updating category');
+                });
+            });
+        });
+
+        function filterEmails(category) {
+            const rows = document.querySelectorAll('#emailTableBody tr');
+            rows.forEach(row => {
+                if (category === 'All' || row.getAttribute('data-category') === category) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Show/hide email content inline
+        function toggleEmailContent(emailId) {
+            const contentDiv = document.getElementById(`emailContent-${emailId}`);
+            if (contentDiv.style.display === 'block') {
+                contentDiv.style.display = 'none';
+            } else {
+                // Fetch full email content if not already loaded
+                if (!contentDiv.innerHTML.trim()) {
+                    fetch(`/get_email_content/${emailId}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                contentDiv.innerHTML = data.content;
+                            } else {
+                                contentDiv.textContent = 'Failed to load content';
+                            }
+                            contentDiv.style.display = 'block';
+                        });
+                } else {
+                    contentDiv.style.display = 'block';
+                }
+            }
+        }
+
+
+        // Select all checkbox logic
+        const selectAllCheckbox = document.getElementById('selectAll');
+        selectAllCheckbox.addEventListener('change', () => {
+            const checkboxes = document.querySelectorAll('.email-checkbox');
+            checkboxes.forEach(cb => cb.checked = selectAllCheckbox.checked);
+            updateSelectedCount();
+        });
+
+        // Highlight CO2 emission in light green
+        const co2Elements = document.querySelectorAll('.co2-emission');
+        co2Elements.forEach(el => {
+            el.style.backgroundColor = '#d1fae5';
+            el.style.border = '1px solid #10b981';
+            el.style.borderRadius = '0.5rem';
+            el.style.padding = '0.2rem 0.5rem';
+            el.style.color = '#065f46';
+            el.style.display = 'inline-block';
+        });
+
+        // Update delete button count
+        function updateSelectedCount() {
+            const count = document.querySelectorAll('.email-checkbox:checked').length;
+            const deleteBtn = document.getElementById('deleteSelectedBtn');
+            deleteBtn.textContent = `Delete Selected (${count})`;
+            deleteBtn.disabled = count === 0;
+                updateTotalCO2();
+            
+        }
+        function updateTotalCO2() {
+  let totalCO2 = 0;
+  document.querySelectorAll(".email-checkbox:checked").forEach(cb => {
+    const row = cb.closest("tr");
+    const co2El = row.querySelector(".co2-emission");
+    if (co2El) {
+      const co2Text = co2El.textContent.match(/([\d.]+)/);
+      if (co2Text) totalCO2 += parseFloat(co2Text[1]);
+    }
+  });
+
+  document.getElementById('co2Saved').textContent = totalCO2.toFixed(2);
+  document.getElementById('deletedCount').textContent = document.querySelectorAll('.email-checkbox:checked').length;
+  document.getElementById('treesPlanted').textContent = (totalCO2 * 0.00005).toFixed(5);
+  document.getElementById('carMiles').textContent = (totalCO2 * 0.0025).toFixed(2);
+}
+
+
+        const emailCheckboxes = document.querySelectorAll('.email-checkbox');
+        emailCheckboxes.forEach(cb => {
+            cb.addEventListener('change', updateSelectedCount);
+        });
+
+        // Call updateSelectedCount on page load to update delete button count based on pre-selected checkboxes
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSelectedCount();
+        });
+
+        // Star icon toggle logic
+        const starIcons = document.querySelectorAll('.star-icon');
+        starIcons.forEach(star => {
+            star.addEventListener('click', () => {
+                        star.classList.toggle('starred');
+                        const emailId = star.getAttribute('data-id');
+                        const isStarred = star.classList.contains('starred');
+                        fetch('/mark_important', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email_id: emailId, important: isStarred })
+                        }).then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Change category badge to Important and move row to top
+                                const row = star.closest('tr');
+                                if (isStarred) {
+                                    // Store original category if not already stored
+                                    if (!row.hasAttribute('data-original-category')) {
+                                        row.setAttribute('data-original-category', row.getAttribute('data-category'));
+                                    }
+                                    // Store original index if not already stored
+                                    if (!row.hasAttribute('data-original-index')) {
+                                        const tbody = row.parentElement;
+                                        const rows = Array.from(tbody.children);
+                                        const index = rows.indexOf(row);
+                                        row.setAttribute('data-original-index', index);
+                                    }
+                                    row.setAttribute('data-category', 'Important');
+                                    const categoryBadge = row.querySelector('.badge');
+                                    if (categoryBadge) {
+                                        categoryBadge.textContent = 'Important';
+                                        categoryBadge.className = 'badge text-white badge-Important';
+                                    }
+                                    // Move row to top
+                                    const tbody = row.parentElement;
+                                    tbody.insertBefore(row, tbody.firstChild);
+                                } else {
+                                    // Restore original category
+                                    const originalCategory = row.getAttribute('data-original-category') || 'Other';
+                                    row.setAttribute('data-category', originalCategory);
+                                    const categoryBadge = row.querySelector('.badge');
+                                    if (categoryBadge) {
+                                        categoryBadge.textContent = originalCategory;
+                                        categoryBadge.className = `badge text-white badge-${originalCategory}`;
+                                    }
+                                    // Move row back to original position
+                                    const originalIndex = parseInt(row.getAttribute('data-original-index'), 10);
+                                    if (!isNaN(originalIndex)) {
+                                        const tbody = row.parentElement;
+                                        const rows = Array.from(tbody.children);
+                                        if (originalIndex >= 0 && originalIndex < rows.length) {
+                                            if (rows[originalIndex] !== row) {
+                                                tbody.insertBefore(row, rows[originalIndex]);
+                                            }
+                                        } else {
+                                            tbody.appendChild(row);
+                                        }
+                                    }
+                                    // Remove stored original category and index attributes
+                                    row.removeAttribute('data-original-category');
+                                    row.removeAttribute('data-original-index');
+                                }
+                                updateSelectedCount();
+                            } else {
+                                alert('Failed to update important status');
+                            }
+                        });
+            });
+        });
+
+        // Delete selected emails
+function deleteSelected() {
+    const selected = Array.from(document.querySelectorAll(".email-checkbox:checked")).map(cb => cb.getAttribute('data-id'));
+    if (selected.length === 0) return alert("No emails selected");
+
+    fetch('/delete_emails', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email_ids: selected })
+    }).then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            showNotification(`Successfully deleted ${data.deleted} emails, saving ${data.co2_saved}g of CO₂!`);
+            updateCO2Impact(data.co2_saved, data.deleted);
+
+            // ✅ Remove emails from UI
+            selected.forEach(id => {
+                const row = document.querySelector(`tr[data-id="${id}"]`);
+                if (row) row.remove();
+            });
+
+            // ✅ Reset CO₂ stats manually
+            document.getElementById("co2Saved").textContent = "0.00";
+            document.getElementById("deletedCount").textContent = "0";
+            document.getElementById("treesPlanted").textContent = "0.00000";
+            document.getElementById("carMiles").textContent = "0.00";
+
+            // ✅ Update pie chart
+            updatePieChart(data.category_counts);
+
+            // ✅ Reset selection count and button
+            updateSelectedCount();
+        } else {
+            showNotification('Failed to delete emails: ' + data.error + '. Please disconnect and reconnect your Google account.');
+        }
+    });
+}
+// Dark mode toggle logic
+const toggleDarkModeBtn = document.getElementById('toggleDarkModeBtn');
+const body = document.body;
+
+// Apply saved mode on page load
+if (localStorage.getItem('darkMode') === 'enabled') {
+    body.classList.add('dark-mode');
+    toggleDarkModeBtn.textContent = '☀️';
+} else {
+    body.classList.remove('dark-mode');
+    toggleDarkModeBtn.textContent = '🌙';
+}
+
+// Toggle dark mode on button click
+toggleDarkModeBtn.addEventListener('click', () => {
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        toggleDarkModeBtn.textContent = '🌙';
+        localStorage.setItem('darkMode', 'disabled');
+    } else {
+        body.classList.add('dark-mode');
+        toggleDarkModeBtn.textContent = '☀️';
+        localStorage.setItem('darkMode', 'enabled');
+    }
+});
+
+
+
+
+        // Disconnect Gmail
+        function disconnectGmail() {
+            fetch("/disconnect_mail", { method: "POST" })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Disconnected from Gmail");
+                        location.reload();
+                    } else {
+                        alert("Failed to disconnect: " + data.error);
+                    }
+                });
+        }
+
+        // Refresh inbox asynchronously without page reload
+        function refreshInbox() {
+            const refreshBtn = document.getElementById('refreshBtn');
+            refreshBtn.disabled = true;
+            refreshBtn.textContent = 'Refreshing...';
+
+            fetch('/smart_analysis', { method: 'POST' })
+                .then(res => res.json())
+                .then(data => {
+                    refreshBtn.disabled = false;
+                    refreshBtn.textContent = 'Refresh';
+
+                    if (data.success) {
+                        const emails = data.emails;
+                        const categoryCounts = data.category_counts;
+
+                        // Update email table body
+                        const emailTableBody = document.getElementById('emailTableBody');
+                        emailTableBody.innerHTML = '';
+
+                        emails.forEach(email => {
+                            const row = document.createElement('tr');
+                            row.classList.add('email-item');
+                            row.setAttribute('data-category', email.category);
+                            row.setAttribute('data-id', email.id);
+
+                            row.innerHTML = `
+                                <td>
+                                    <input type="checkbox" class="form-check-input email-checkbox" data-id="${email.id}" ${email.category === 'Spam' ? 'checked' : ''} />
+                                </td>
+                                <td>${email.from}</td>
+                                <td>
+                                    <strong>${email.subject}</strong><br/>
+                                    <small>${email.snippet}</small><br/>
+                                    <small class="text-muted small">${email.internalDate ? new Date(email.internalDate).toLocaleString() : ''}</small><br/>
+                                    <small class="co2-emission">🌿 CO₂ Emission: ${email.co2_emission} g/year</small><br/>
+                                    <button class="btn btn-sm btn-outline-primary view-more-btn" onclick="toggleEmailContent('${email.id}')">View More</button>
+                                    <div id="emailContent-${email.id}" class="email-content" style="display:none; white-space: pre-wrap; margin-top: 0.5rem; background-color: #d1fae5; border: 1px solid #10b981; border-radius: 0.5rem; padding: 1rem; color: #065f46; max-height: 300px; max-width: 100%; overflow-y: auto; word-wrap: break-word; word-break: break-word;"></div>
+                                </td>
+                                <td>
+                                    <span class="badge text-white badge-${email.category}">${email.category}</span>
+                                </td>
+                                <td>
+                                    <span class="star-icon" data-id="${email.id}" title="Mark as Important">&#9733;</span>
+                                </td>
+                            `;
+
+                            emailTableBody.appendChild(row);
+                        });
+
+                        // Update category filters counts
+                        const filters = document.querySelectorAll('.category-filter');
+                        filters.forEach(filter => {
+                            const category = filter.getAttribute('data-category');
+                            if (category === 'All') {
+                                filter.textContent = `All (${emails.length})`;
+                            } else {
+                                filter.textContent = `${category} (${categoryCounts[category] || 0})`;
+                            }
+                        });
+
+                        // Update pie chart
+                        updatePieChart(categoryCounts);
+
+                        // Re-attach event listeners for checkboxes and stars
+                        const emailTableBodyElem = document.getElementById('emailTableBody');
+                        emailTableBodyElem.addEventListener('change', (event) => {
+                            if (event.target && event.target.classList.contains('email-checkbox')) {
+                                updateSelectedCount();
+                            }
+                        });
+
+                        const starIcons = document.querySelectorAll('.star-icon');
+                        starIcons.forEach(star => {
+                            star.addEventListener('click', () => {
+                                star.classList.toggle('starred');
+                                const emailId = star.getAttribute('data-id');
+                                const isStarred = star.classList.contains('starred');
+                                fetch('/mark_important', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ email_id: emailId, important: isStarred })
+                                }).then(res => res.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        refreshInbox();
+                                    } else {
+                                        alert('Failed to update important status');
+                                    }
+                                });
+                            });
+                        });
+
+                        // Reset delete selected button and carbon card
+                        updateSelectedCount();
+                        // Ensure delete button count updates after auto-selecting spam emails
+                        updateSelectedCount();
+                    } else {
+                        alert('Failed to refresh emails: ' + data.error);
+                    }
+                })
+                .catch(() => {
+                    refreshBtn.disabled = false;
+                    refreshBtn.textContent = 'Refresh';
+                    // Removed alert for network error as per user request
+                });
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+
+        // Update CO2 impact display
+        function updateCO2Impact(co2Saved, deletedCount) {
+            document.getElementById('co2Saved').textContent = co2Saved;
+            document.getElementById('deletedCount').textContent = deletedCount;
+            // Calculate equivalent trees and car miles
+            const trees = (co2Saved * 0.00005).toFixed(5);
+            const miles = (co2Saved * 0.0025).toFixed(2);
+            document.getElementById('treesPlanted').textContent = trees;
+            document.getElementById('carMiles').textContent = miles;
+        }
+
+        // Pie chart setup
+        const categoryCounts = {
+            Important: {{ category_counts.get('Important', 0) }},
+            Social: {{ category_counts.get('Social', 0) }},
+            Promotional: {{ category_counts.get('Promotional', 0) }},
+            Newsletter: {{ category_counts.get('Newsletter', 0) }},
+            Spam: {{ category_counts.get('Spam', 0) }},
+            Other: {{ category_counts.get('Other', 0) }},
+        };
+
+        const ctx = document.getElementById('categoryChart').getContext('2d');
+        let categoryChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(categoryCounts),
+                datasets: [{
+                    data: Object.values(categoryCounts),
+                    backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#9ca3af', '#ef4444', '#6b7280']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        // Function to update pie chart dynamically
+        function updatePieChart(newCounts) {
+            categoryChart.data.datasets[0].data = Object.values(newCounts);
+            categoryChart.update();
+        }
+    </script>
+</body>
+</html>

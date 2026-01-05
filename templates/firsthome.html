@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiWasteorg - Digital Sustainability Platform</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/firsthome.css') }}">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="#" class="logo">
+                    <span class="logo-text">Eco<span class="logo-highlight">Clean</span></span>
+                    <span class="logo-icon">
+                        <i class="fas fa-leaf"></i>
+                        <i class="fas fa-leaf white-leaf"></i>
+                    </span>
+                </a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#" onclick="openLoginPopup(); return false;">Login/Signup</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="matrix-background"></div>
+        <div class="content-card">
+            <h1 class="main-title">Digital Sustainability Platform</h1>
+            <p class="subtitle">Reducing digital carbon emissions through intelligent solutions</p>
+            <div class="interactive-text">
+                <span class="text-item active">Reduce your carbon footprint</span>
+                <span class="text-item">Optimize your digital resources</span>
+                <span class="text-item">Track your environmental impact</span>
+                <span class="text-item">Join the green revolution</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="section-header">
+            <h2>About Us</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="EchoClean Sustainability">
+            </div>
+            <div class="about-content">
+                <p>EchoClean is a pioneering digital sustainability platform dedicated to reducing digital waste through innovative AI  technologies. Our mission is to create a cleaner, more efficient digital environment by helping organizations and individuals manage their digital assets sustainably. With our intelligent file analysis and automated cleanup features, we're making digital sustainability accessible and effective for everyone.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="services-container">
+            <div class="service-item">
+                <div class="service-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="AI Chatbot">
+                <div class="service-content">
+                    <h3>AI Chatbot Assistant</h3>
+                    <p>Intelligent virtual assistant providing real-time guidance on digital waste management and sustainable practices. </p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sustainability Insights">
+                <div class="service-content">
+                    <h3>Sustainability Insights</h3>
+                    <p>Comprehensive reports and analytics on your digital sustainability metrics, helping you make informed decisions.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <img src="{{ url_for('static', filename='images/footprint.jpg') }}" alt="Carbon Footprint">
+                <div class="service-content">
+                    <h3>Carbon Footprint Tracking</h3>
+                    <p>Monitor and reduce your digital carbon footprint with real-time tracking and optimization recommendations.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">
+                    <i class="fas fa-broom"></i>
+                </div>
+                <img src="{{ url_for('static', filename='images/automation.jpg') }}" alt="Automated Cleanup">
+                <div class="service-content">
+                    <h3>Automated Cleanup</h3>
+                    <p>Smart file management system that automatically identifies and removes digital waste while organizing your data.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="SDG Education">
+                <div class="service-content">
+                    <h3>SDG Education Hub</h3>
+                    <p>Educational resources highlighting how our platform contributes to UN Sustainable Development Goals (SDGs).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Impact Section -->
+    <section id="impact" class="impact">
+        <div class="section-header">
+            <h2>Ready to Make a Difference?</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="impact-container">
+            <div class="impact-content">
+                <h3>Join Our Mission for a Sustainable Digital Future</h3>
+                <p>Every digital action leaves a carbon footprint. Our platform helps you reduce your digital carbon emissions by up to 40% through intelligent file management and optimized data storage.</p>
+                <p>By joining EchoClean, you're contributing to a global effort to reduce digital waste and combat climate change. Together, we can create a more sustainable digital ecosystem for future generations.</p>
+                <div class="impact-cta">
+                    <a href="#" class="impact-btn carbon-btn" onclick="openLoginPopup(); return false;">Reduce Carbon Footprint</a>
+                </div>
+            </div>
+            <div class="impact-images">
+                <div class="image-grid">
+                    <div class="image-item">
+                        <img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sustainable Technology">
+                    </div>
+                    <div class="image-item">
+                        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Green Energy">
+                    </div>
+                    <div class="image-item">
+                        <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Digital Sustainability">
+                    </div>
+                    <div class="image-item">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Person Reducing Carbon Footprint">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 EchoClean. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Login Popup -->
+    <div id="loginPopup" class="login-popup-overlay">
+        <div class="auth-container">
+            <button class="close-btn" onclick="closeLoginPopup()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <!-- Sign Up Form -->
+            <div class="auth-form active" id="signupForm">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <h1>EcoClean</h1>
+                </div>
+                <form id="signupFormElement" onsubmit="handleSignup(event)">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="signupUsername" placeholder="Username" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="signupEmail" placeholder="Microsoft Outlook Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="signupPassword" placeholder="Password" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="signupConfirmPassword" placeholder="Confirm Password" required>
+                        <div class="password-error" id="passwordError" style="display: none; color: #dc3545; font-size: 0.8rem; margin-top: 0.25rem;">Passwords do not match</div>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="signupRememberMe">
+                        <label class="form-check-label" for="signupRememberMe">
+                            Remember me next time
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+                <div class="auth-toggle">
+                    <p>Already have an account? <a href="#" onclick="toggleForms(); return false;">Login</a></p>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form" id="loginForm">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <h1>EcoClean</h1>
+                </div>
+                <form id="loginFormElement" onsubmit="handleLogin(event)">
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="loginEmail" placeholder="Microsoft Outlook Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="loginRememberMe">
+                        <label class="form-check-label" for="loginRememberMe">
+                            Remember me next time
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <div class="auth-toggle">
+                    <p>Don't have an account? <a href="#" onclick="toggleForms(); return false;">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/firsthome.js') }}"></script>
+    
+    <!-- Chatbot Icon -->
+    <div class="chatbot-icon" onclick="openChatbot()">
+        <i class="fas fa-robot"></i>
+        <span class="chat-bubble">How can I help you today?</span>
+    </div>
+
+    <style>
+        .login-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .auth-form {
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-control {
+            background: #f8f9fa;
+            border: 1px solid #ced4da;
+            color: #333;
+            padding: 12px;
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-control:focus {
+            background: #ffffff;
+            border-color: #80bdff;
+            color: #333;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: #6c757d;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #dc3545, #e83e8c);
+            border: none;
+            padding: 12px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: transform 0.3s ease;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #e83e8c, #dc3545);
+            transform: translateY(-2px);
+        }
+
+        .face-auth {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .face-auth:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .face-auth i {
+            font-size: 2rem;
+            background: linear-gradient(45deg, #dc3545, #e83e8c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #dc3545, #e83e8c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            margin-top: 0.5rem;
+            color: #1a1f25;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #6c757d;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-btn:hover {
+            opacity: 1;
+        }
+
+        .auth-toggle {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            color: #6c757d;
+        }
+
+        .auth-toggle a {
+            color: #dc3545;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .auth-toggle a:hover {
+            color: #e83e8c;
+            text-decoration: underline;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .form-check-input {
+            margin-right: 0.5rem;
+        }
+
+        .form-check-label {
+            font-family: 'Poppins', sans-serif;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* Interactive Hero Text */
+        .interactive-text {
+            margin-top: 2rem;
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+            background: transparent;
+            border-radius: 10px;
+            padding: 5px 0;
+            box-shadow: none;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-text:hover {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .text-item {
+            display: block;
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #28a745;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .text-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .text-item.clicked {
+            animation: pulse 0.5s;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #dc3545, 0 0 20px #dc3545;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #dc3545, 0 0 40px #dc3545;
+            }
+        }
+
+        /* Impact Section Styles */
+        .impact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .impact-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            gap: 3rem;
+        }
+
+        .impact-content {
+            flex: 1;
+        }
+
+        .impact-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1f25;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .impact-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        .impact-cta {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .carbon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: #ffffff;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .carbon-btn:hover {
+            background: linear-gradient(45deg, #20c997, #28a745);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .impact-images {
+            flex: 1;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .image-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .impact-container {
+                flex-direction: column;
+            }
+            
+            .impact-content {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+            
+            .impact-cta {
+                justify-content: center;
+            }
+        }
+
+        .content-card {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            transform-origin: center;
+        }
+        
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(220, 53, 69, 0.1), transparent);
+            z-index: -1;
+        }
+        
+        .content-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #dc3545, #e83e8c, #dc3545);
+            z-index: -2;
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background-size: 200% 200%;
+            display: none;
+        }
+        
+        .content-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .content-card.highlighted::after {
+            opacity: 0;
+        }
+        
+        @keyframes borderAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .main-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1a1f25;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            padding: 10px 0;
+            cursor: pointer;
+        }
+        
+        .main-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #dc3545, #e83e8c);
+            transition: width 0.3s ease;
+            display: none;
+        }
+        
+        .main-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #e83e8c, #dc3545);
+            transition: width 0.3s ease;
+        }
+        
+        .main-title:hover::before,
+        .main-title:hover::after {
+            width: 100%;
+        }
+        
+        .main-title.active::before,
+        .main-title.active::after {
+            width: 100%;
+        }
+        
+        .main-title .border-left {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(to bottom, #dc3545, #e83e8c);
+            transition: height 0.3s ease;
+        }
+        
+        .main-title .border-right {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(to top, #e83e8c, #dc3545);
+            transition: height 0.3s ease;
+        }
+        
+        .main-title:hover .border-left,
+        .main-title:hover .border-right {
+            height: 100%;
+        }
+        
+        .main-title.active .border-left,
+        .main-title.active .border-right {
+            height: 100%;
+        }
+        
+        .text-item {
+            display: block;
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #28a745;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .text-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .text-item.clicked {
+            animation: pulse 0.5s;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .chatbot-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #4CAF50;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chatbot-icon:hover {
+            transform: scale(1.1);
+            background: #45a049;
+        }
+
+        .chatbot-icon i {
+            font-size: 24px;
+        }
+
+        .chat-bubble {
+            position: absolute;
+            bottom: 70px;
+            right: 20px;
+            background: white;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .chatbot-icon:hover .chat-bubble {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+    <script>
+        // Form handling functions
+        async function handleSignup(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('signupUsername').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                document.getElementById('passwordError').style.display = 'block';
+                return;
+            }
+            
+            try {
+                const response = await fetch('/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username,
+                        email,
+                        password
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    alert('Registration successful! Please login.');
+                    toggleForms();
+                } else {
+                    alert(data.error || 'Registration failed. Please try again.');
+                }
+            } catch (error) {
+                alert('An error occurred. Please try again.');
+            }
+        }
+        
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    window.location.href = '/home';
+                } else {
+                    alert(data.error || 'Login failed. Please try again.');
+                }
+            } catch (error) {
+                alert('An error occurred. Please try again.');
+            }
+        }
+        
+        function toggleForms() {
+            const signupForm = document.getElementById('signupForm');
+            const loginForm = document.getElementById('loginForm');
+            
+            signupForm.classList.toggle('active');
+            loginForm.classList.toggle('active');
+        }
+        
+        function openLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'flex';
+        }
+        
+        function closeLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'none';
+        }
+
+        // Interactive text animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const textItems = document.querySelectorAll('.text-item');
+            let currentIndex = 0;
+            
+            // Show the first item
+            textItems[0].classList.add('active');
+            
+            // Rotate through items
+            setInterval(function() {
+                textItems[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % textItems.length;
+                textItems[currentIndex].classList.add('active');
+            }, 3000);
+            
+            // Add click event to make items interactive
+            textItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    textItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    // Add a pulse animation
+                    this.classList.add('clicked');
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 500);
+                });
+            });
+            
+            // Add click event to main title
+            const mainTitle = document.querySelector('.main-title');
+            const contentCard = document.querySelector('.content-card');
+            
+            mainTitle.addEventListener('click', function() {
+                // Toggle active class on main title
+                this.classList.toggle('active');
+                
+                // Toggle highlighted class on content card
+                contentCard.classList.toggle('highlighted');
+                
+                // If title is active, show the next text item
+                if (this.classList.contains('active')) {
+                    textItems[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % textItems.length;
+                    textItems[currentIndex].classList.add('active');
+                }
+            });
+        });
+
+        function openChatbot() {
+            // Add your chatbot opening logic here
+            alert('Chatbot feature coming soon!');
+        }
+    </script>
+</body>
+</html> 

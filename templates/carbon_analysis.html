@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-leaf me-2"></i>
+                        Carbon Footprint Analysis
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <!-- Storage Overview -->
+                    <div class="mb-4">
+                        <h5 class="text-success"><i class="fas fa-hdd me-2"></i>Storage Overview</h5>
+                        <div class="bg-light p-3 rounded">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="mb-2">Total Storage Used:</p>
+                                    <h3 class="text-primary">{{ carbon_impact.size_gb }} GB</h3>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-2">Number of Files:</p>
+                                    <h3 class="text-primary">{{ files|length }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carbon Impact -->
+                    <div class="mb-4">
+                        <h5 class="text-success"><i class="fas fa-cloud me-2"></i>Carbon Impact</h5>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body text-center">
+                                        <h6>Monthly Impact</h6>
+                                        <h4 class="text-danger">{{ carbon_impact.monthly_g }}g CO₂</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body text-center">
+                                        <h6>Yearly Impact</h6>
+                                        <h4 class="text-danger">{{ carbon_impact.yearly_g }}g CO₂</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body text-center">
+                                        <h6>Equivalent to</h6>
+                                        <h4 class="text-info">{{ (carbon_impact.yearly_g / 2.5)|round(1) }} emails/year</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- File Analysis -->
+                    <div>
+                        <h5 class="text-success"><i class="fas fa-file me-2"></i>File Analysis</h5>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>File Name</th>
+                                        <th>Size</th>
+                                        <th>Last Modified</th>
+                                        <th>Monthly Impact</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for file in files %}
+                                    <tr id="file-{{ file.id }}">
+                                        <td>{{ file.name }}</td>
+                                        <td>{{ (file.size / 1024 / 1024)|round(2) }} MB</td>
+                                        <td>{{ file.lastModifiedDateTime }}</td>
+                                        <td>{{ ((file.size / (1024 * 1024 * 1024)) * 0.000017 * 1000 / 12)|round(3) }}g CO₂</td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteFile('{{ file.id }}')">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="card shadow-sm mt-4">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-lightbulb me-2"></i>
+                        Recommendations
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5><i class="fas fa-trash-alt text-danger me-2"></i>Remove Unused Files</h5>
+                                    <p>Delete files you haven't accessed in the last 6 months to reduce storage impact.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5><i class="fas fa-compress-arrows-alt text-warning me-2"></i>Compress Large Files</h5>
+                                    <p>Compress files larger than 10MB to reduce storage space and carbon footprint.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5><i class="fas fa-clock text-success me-2"></i>Regular Cleanup</h5>
+                                    <p>Schedule monthly cleanup sessions to maintain optimal storage efficiency.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function deleteFile(fileId) {
+    if (confirm('Are you sure you want to delete this file? This action cannot be undone.')) {
+        fetch(`/delete_onedrive_file/${fileId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                document.getElementById(`file-${fileId}`).remove();
+                // Update the totals
+                location.reload(); // Reload to update all statistics
+            } else {
+                alert('Error deleting file: ' + data.error);
+            }
+        })
+        .catch(error => {
+            alert('Error deleting file: ' + error);
+        });
+    }
+}
+</script>
+{% endblock %} 

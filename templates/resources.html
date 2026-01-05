@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Educational resources for Digital Waste and SDG 12">
+    <title>Educational Resources - Digital Waste and SDG 12</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: linear-gradient(135deg, #2C3E50, #3498db);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 2.2em;
+            margin: 0;
+            font-weight: 600;
+        }
+        .container {
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 1000px;
+            flex: 1;
+            margin-bottom: 80px;
+        }
+        .resource-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .resource-section:hover {
+            transform: translateY(-5px);
+        }
+        .resource-section h2 {
+            color: #2C3E50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .resource-list {
+            list-style: none;
+            padding: 0;
+        }
+        .resource-item {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #3498db;
+        }
+        .resource-item:hover {
+            transform: translateX(10px);
+            background: #e9ecef;
+        }
+        .resource-item h3 {
+            color: #2C3E50;
+            margin: 0 0 10px 0;
+        }
+        .resource-item p {
+            margin: 10px 0;
+            color: #666;
+        }
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(52, 152, 219, 0.1);
+        }
+        .resource-link:hover {
+            color: #2980b9;
+            background: rgba(52, 152, 219, 0.2);
+            transform: translateY(-2px);
+        }
+        .resource-link i {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        .youtube-link {
+            color: #ff0000;
+            background: rgba(255, 0, 0, 0.1);
+        }
+        .youtube-link:hover {
+            color: #cc0000;
+            background: rgba(255, 0, 0, 0.2);
+        }
+        .back-btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .back-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        footer {
+            background-color: #2C3E50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Educational Resources</h1>
+    </header>
+
+    <div class="container">
+        <div class="resource-section">
+            <h2>Video Resources</h2>
+            <div class="resource-list">
+                <div class="resource-item">
+                    <h3>Understanding Digital Waste</h3>
+                    <p>A comprehensive video explaining sustainable digital practices and their impact on the environment. Learn about the environmental consequences of digital waste and how to minimize your digital carbon footprint.</p>
+                    <a href="https://www.youtube.com/watch?v=dn-hLQk49eA" class="resource-link youtube-link" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                        Watch on YouTube
+                    </a>
+                </div>
+                <div class="resource-item">
+                    <h3>SDG 12 Explained</h3>
+                    <p>An informative video breaking down Sustainable Development Goal 12 and its importance in today's digital world. Understand how responsible consumption applies to digital resources.</p>
+                    <a href="https://www.youtube.com/watch?v=RB8Yc8XBkxg" class="resource-link youtube-link" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                        Watch on YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="resource-section">
+            <h2>Research & Articles</h2>
+            <div class="resource-list">
+                <div class="resource-item">
+                    <h3>Digital Sustainability Research</h3>
+                    <p>Explore academic research on digitalization and sustainability transitions. This paper provides insights into how digital transformation can be aligned with sustainability goals.</p>
+                    <a href="https://www.researchgate.net/publication/355167429_On_digitalization_and_sustainability_transitions" class="resource-link" target="_blank">
+                        <i class="fas fa-file-alt"></i>
+                        Read Research Paper
+                    </a>
+                </div>
+                <div class="resource-item">
+                    <h3>Sustainable Digital Transitions</h3>
+                    <p>Learn about the latest developments in sustainable digital transformation and how organizations are adapting to reduce their environmental impact.</p>
+                    <a href="https://onlinelibrary.wiley.com/doi/10.1002/bse.2943" class="resource-link" target="_blank">
+                        <i class="fas fa-file-alt"></i>
+                        View Article
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="resource-section">
+            <h2>Official Resources</h2>
+            <div class="resource-list">
+                <div class="resource-item">
+                    <h3>UN SDG 12 Hub</h3>
+                    <p>Access the official United Nations resource on Sustainable Development Goal 12. Get detailed information about targets, indicators, and progress towards responsible consumption and production.</p>
+                    <a href="https://sdgs.un.org/goals/goal12" class="resource-link" target="_blank">
+                        <i class="fas fa-globe"></i>
+                        Visit UN SDG Portal
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <a href="{{ url_for('home3') }}" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Digital Waste Education. All rights reserved.</p>
+    </footer>
+</body>
+</html>
